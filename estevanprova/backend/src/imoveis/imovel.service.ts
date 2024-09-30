@@ -2,7 +2,7 @@ import { Injectable, Inject } from '@nestjs/common';
 import { DataSource } from 'typeorm';
 import { CreateImovelDto } from './dto/create-imovel.dto';
 import { UpdateImovelDto } from './dto/update-imovel.dto';
-import { Imovel } from '../imovel/entities/.entity';
+import { Imovel } from './entities/imovel.entity';
 
 @Injectable()
 export class ImovelService {
@@ -25,7 +25,7 @@ export class ImovelService {
   }
 
   async update(id: number, updateImovelDto: UpdateImovelDto) {
-    return await this.database.getRepository(Imovel).update({id}, UpdateImovelDto);
+    return await this.database.getRepository(Imovel).update({id}, new UpdateImovelDto);
   }
 
   async remove(id: number) {
